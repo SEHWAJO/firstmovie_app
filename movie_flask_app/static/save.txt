@@ -1,0 +1,4 @@
+title = request.form["title"] 
+note = request.form["note"] 
+with open("static/save.txt","w", encoding='utf-8') as f: 
+f.write("%s,%s" % (title, note))

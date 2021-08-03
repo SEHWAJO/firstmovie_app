@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title> 영화 정보 웹사이트</title>
+  
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-sm bg-light">
+  <ul class="navbar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link" href="/">Home</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('getinfo') }}">Top17 Movies</a>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('findmovie') }}">Find movie</a>
+      </li>
+  
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('kakaoLogin') }}">Log in</a>
+    </li>
+
+
+  </ul>
+</nav>
+<br>
+
+<div class="container-fluid">
+
+
+
+  <body>
+    <a href="javascript:kakaoLogin();"><img scr="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height:60px;width:auto;"/></a>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      window.Kakao.init("306c496cd0152fda9ac663a31f8c0a7d");
+  
+      function kakaoLogin() {
+        window.Kakao.Auth.login({
+          scope:'profile, account_email, gender',
+          success: function(authObj) {
+            console.log(authObj);   
+            window.Kakao.API.request({
+              url:'/v2/user/me',
+              success: res => {
+                const kakao_account = res.kakao_account;
+                console.log(kakao_account);
+              }
+            });      
+          }
+        });
+      }
+    </script>
+  </body>
+  </html>

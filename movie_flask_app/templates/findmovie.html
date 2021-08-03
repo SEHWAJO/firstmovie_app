@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {% block head %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>{% block title %}{% endblock %} 영화 정보 웹사이트</title>
+  {% endblock %}
+</head>
+
+
+<!DOCTYPE html> 
+<html lang="ko"> 
+    <head> <!-- Webpage Title --> 
+        <title>영화 정보 웹사이트</title> 
+        
+        <!-- Required meta tags --> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+        
+        <!-- Bootstrap CSS --> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+                crossorigin="anonymous"> 
+                
+        <!-- JS --> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+                crossorigin="anonymous"></script> 
+                
+        <!-- 구글폰트 --> 
+        <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet"> 
+        <script type="text/javascript"> 
+        
+            $(document).ready(function () {
+                $("#reviews-box").html(""); 
+                showReview(); }); function makeReview() { 
+                    $.ajax({ type: "POST", 
+                    url: "/review", 
+                    data: {sample_give:'샘플데이터'}, 
+                    success: function (response) { 
+                        alert(response["msg"]); 
+                        window.location.reload(); 
+                        
+                    } 
+                }) 
+            } 
+            // function showReview() {
+            //      $.ajax({
+            //         type: "GET",
+            //         url: "/review?sample_give=샘플데이터", 
+            //         data: {}, 
+            //         success: function (response) { 
+            //             alert(response["msg"]); 
+            //         } 
+            //     }) 
+            // }
+        </script> 
+        
+        <style type="text/css">
+            * { 
+                font-family: "Do Hyeon", sans-serif; 
+            } 
+            h1, 
+            h5 {
+                 display: inline; 
+            } 
+            
+            .info {
+                margin-top: 20px;
+                margin-bottom: 20px; 
+            
+            } .review {
+                text-align: center; 
+            
+            } .reviews {
+                margin-top: 100px;
+            
+            } 
+        </style> 
+    </head>
+
+
+
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-sm bg-light">
+  <ul class="navbar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link" href="/">Home</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('top17') }}">Top17 Movies</a>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('findmovie') }}">Find movie</a>
+      </li>
+  
+
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('method') }}">FIND</a>
+    </li> -->
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('note') }}">Note</a>
+      </li>
+
+     <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('kakaoLogin') }}">Log in</a>
+    </li> 
+
+
+  </ul>
+</nav>
+<br>{% block content %}{% endblock %}
+
+
+
+
+<body> 
+  <div class="container"> 
+      <img src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9185/%EC%98%81%ED%99%94%20%EB%B0%B0%EA%B8%89%20%EC%A7%81%EB%AC%B4%201.jpg" style="height:300px;width:auto;" class="img-fluid" alt="Responsive image"> 
+
+
+
+
+<div class="col-md-12"> 
+    <h1>영화 검색</h1> 
+    <div class="col-md-4"> 
+        <form action="searchtitle" method="get" >
+            <div class="form-group"> 
+                <input type="text" class ="form-control" name="title" id="keyword" placeholder="검색어를 입력하세요"> 
+                <button type="submit" class="btn btn-primary" id="btn-movies-find">검색</button>
+            </div> 
+        </div> 
+      
+
+      </form>
+    
+    </div> 
+
+
+
